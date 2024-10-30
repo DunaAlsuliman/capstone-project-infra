@@ -15,7 +15,7 @@ resource "alicloud_instance" "http" {
   instance_charge_type       = "PostPaid"
   key_name = alicloud_key_pair.key.key_pair_name
 
-  user_data = templatefile("http-setup.tpl", { redis_host = alicloud_instance.redis.private_ip})
+  user_data = templatefile("http-setup.tpl", { redis_host = alicloud_instance.redis.private_ip, mysql_host = alicloud_instance.mysql.private_ip})
 }
 # http private ip
   output "http_private_ip" {
