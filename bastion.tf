@@ -51,5 +51,3 @@ resource "alicloud_security_group_rule" "allow-ssh-to-bastion" {
   security_group_id = alicloud_security_group.bastion_security_group.id
   cidr_ip           = "0.0.0.0/0"
 }
-
-

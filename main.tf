@@ -66,6 +66,12 @@ resource "alicloud_route_table" "private" {
   associate_type   = "VSwitch"
 }
 
+
+resource "alicloud_route_table_attachment" "route_table_attachment" {
+  vswitch_id     = alicloud_vswitch.private.id
+  route_table_id = alicloud_route_table.private.id
+}
+
 resource "alicloud_route_entry" "entry" {
   route_table_id        = alicloud_route_table.private.id
   destination_cidrblock = "0.0.0.0/0"
@@ -73,9 +79,5 @@ resource "alicloud_route_entry" "entry" {
   nexthop_id            = alicloud_nat_gateway.nat_gateway.id
 }
 
-resource "alicloud_route_table_attachment" "route_table_attachment" {
-  vswitch_id     = alicloud_vswitch.private.id
-  route_table_id = alicloud_route_table.private.id
-}
 
 
